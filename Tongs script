@@ -1,2 +1,25 @@
+#include <stdio.h>
 
-K
+// Constants and macros
+#define MAX_BUFFER 1024
+
+// Function prototype
+void print_message(void);
+
+// Main function: entry point of the program
+int main(void) {
+    // Variable declarations
+    int status = 0;
+
+    // Core logic
+    printf("Hello, World!\n");
+    print_message();
+
+    // Return exit code
+    return status;
+}
+
+// Function definition
+void print_message(void) {
+    printf("Blueprint executed successfully.\n");
+} 
