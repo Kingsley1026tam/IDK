@@ -1,9 +1,343 @@
-<!DOCTYPE=html>
-<html>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMB 官方 WhatsApp 群組規則</title>
+    <style>
+        :root {
+            --primary-color: #ff4757;
+            --accent-color: #2ed573;
+            --warning-color: #ffa502;
+            --bg-color: #0f111a;
+            --card-bg: #1e2235;
+            --text-color: #ffffff;
+            --text-secondary: #a0a5c0;
+            --border-color: #2f3542;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft JhengHei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 650px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin: 0 0 10px 0;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .version-info {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 15px;
+        }
+
+        .warning-box {
+            background-color: rgba(255, 71, 87, 0.12);
+            border-left: 5px solid var(--primary-color);
+            padding: 18px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            color: #ff6b81;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            box-shadow: 0 4px 12px rgba(255, 71, 87, 0.1);
+        }
+
+        .rules-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rules-list li {
+            font-size: 1.1rem;
+            margin-bottom: 16px;
+            line-height: 1.6;
+            color: #e4e7eb;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 14px 18px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: flex-start;
+            transition: all 0.2s ease;
+        }
+
+        .rules-list li:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 71, 87, 0.3);
+            transform: translateX(4px);
+        }
+
+        .rule-num {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 12px;
+            min-width: 24px;
+        }
+
+        .rule-text {
+            flex: 1;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 35px;
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            border-top: 1px solid var(--border-color);
+            padding-top: 25px;
+        }
+
+        /* Pop-up Ad Styles */
+        .ad-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .ad-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+        }
+
+        .ad-container a {
+            display: block;
+            line-height: 0;
+        }
+
+        .ad-container img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            border-radius: 4px;
+        }
+
+        .ad-close-btn {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 30px;
+            height: 30px;
+            background-color: #ccc;
+            color: white;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: not-allowed;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            z-index: 10000;
+            pointer-events: none;
+            transition: background-color 0.3s;
+        }
+
+        .ad-close-btn.active {
+            background-color: #ff4757;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .ad-close-btn.active:hover {
+            background-color: #ff6b81;
+        }
+    </style>
+</head>
 <body>
-<p>hello</p>
-<p>reply here</p>
-<input type="text" name="box"><br /><br />
-<button type="submit", background-color="blue">submit</button>
+
+<div class="container">
+    <header>
+        <h1>SMB 官方群組守則</h1>
+        <div class="version-info">
+            <strong>規則 (V1.0)</strong><br>
+            第一次更新：2026/7/10 香港時間晚上 9:40pm<br>
+            最後更新：2026/7/10 香港時間晚上 9:40pm
+        </div>
+    </header>
+
+    <div class="warning-box">
+        ⚠️ 警告：每個人只有兩次機會，用完呢兩次機會之後你會被 Ben (Ban)！
+    </div>
+
+    <ul class="rules-list">
+        <li>
+            <span class="rule-num">1.</span>
+            <span class="rule-text">只可以講迷因，不可以講粗口 🤐</span>
+        </li>
+        <li>
+            <span class="rule-num">2.</span>
+            <span class="rule-text">犯咗規則的人不可以進入語音 🚫🎤</span>
+        </li>
+        <li>
+            <span class="rule-num">3.</span>
+            <span class="rule-text">進入語音需要被管理員批准先至可以入去 🔑</span>
+        </li>
+        <li>
+            <span class="rule-num">4.</span>
+            <span class="rule-text">不可以鬧交 🕊️</span>
+        </li>
+        <li>
+            <span class="rule-num">5.</span>
+            <span class="rule-text">SMB官方要進入語音的活動，犯咗規則的人不可以參與 ❌</span>
+        </li>
+        <li>
+            <span class="rule-num">6.</span>
+            <span class="rule-text">如果你想建立投票，你就要向管理員批准 🗳️</span>
+        </li>
+        <li>
+            <span class="rule-num">7.</span>
+            <span class="rule-text">不可以罵SMB員工、管理員、培根頭的日常及SMB創辦人Morris 👑</span>
+        </li>
+    </ul>
+
+    <div class="footer">
+        最後要遵守規則，不要做犯規則的人！👍
+    </div>
+</div>
+
+<script>
+    // Only 'Hk.trip.com.jpeg' inside the ads pool array
+    const adsPool = [
+        "Ads/Hk.trip.com.jpeg"
+    ];
+
+    function getUrlFromFilename(filename) {
+        let name = filename.substring(0, filename.lastIndexOf('.')).toLowerCase();
+        
+        if (name.includes('youtube')) {
+            return "https://youtube.com";
+        }
+        
+        return "https://" + name;
+    }
+
+    function showPopupAd() {
+        closePopupAd();
+
+        const randomIndex = Math.floor(Math.random() * adsPool.length);
+        const imagePath = adsPool[randomIndex];
+        
+        const filename = imagePath.split('/').pop(); 
+        const targetUrl = getUrlFromFilename(filename);
+
+        const overlay = document.createElement('div');
+        overlay.className = 'ad-overlay';
+        overlay.id = 'activeAdOverlay';
+
+        const container = document.createElement('div');
+        container.className = 'ad-container';
+
+        const link = document.createElement('a');
+        link.href = targetUrl;
+        link.target = '_blank';
+
+        const img = document.createElement('img');
+        img.src = imagePath;
+        img.alt = 'Advertisement';
+        
+        img.onerror = function() {
+            this.style.display = 'none';
+            const errorText = document.createElement('div');
+            errorText.style.padding = '20px';
+            errorText.style.color = '#000';
+            errorText.innerHTML = 'File missing: ' + imagePath + '<br><small>Make sure this exact file is uploaded inside the Ads folder.</small>';
+            container.appendChild(errorText);
+        };
+        
+        link.appendChild(img);
+
+        const closeBtn = document.createElement('div');
+        closeBtn.className = 'ad-close-btn';
+        
+        let timeLeft = 5;
+        closeBtn.innerHTML = timeLeft;
+
+        const countdownTimer = setInterval(() => {
+            timeLeft--;
+            if (timeLeft > 0) {
+                closeBtn.innerHTML = timeLeft;
+            } else {
+                clearInterval(countdownTimer);
+                closeBtn.innerHTML = '&times;';
+                closeBtn.classList.add('active');
+            }
+        }, 1000);
+
+        closeBtn.onclick = function(e) {
+            e.stopPropagation();
+            if (closeBtn.classList.contains('active')) {
+                closePopupAd();
+            }
+        };
+
+        container.appendChild(link);
+        container.appendChild(closeBtn);
+        overlay.appendChild(container);
+        document.body.appendChild(overlay);
+    }
+
+    function closePopupAd() {
+        const existingOverlay = document.getElementById('activeAdOverlay');
+        if (existingOverlay) {
+            existingOverlay.remove();
+        }
+    }
+
+    window.onload = function() {
+        showPopupAd();
+        setInterval(showPopupAd, 30000);
+    };
+</script>
+
 </body>
 </html>
